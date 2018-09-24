@@ -1,0 +1,442 @@
+Created by PLY version 3.10 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> sentence
+Rule 1     sentence -> equivalence_sentence
+Rule 2     equivalence_sentence -> implication_sentence EQUIVALENCE equivalence_sentence
+Rule 3     equivalence_sentence -> implication_sentence
+Rule 4     implication_sentence -> conjunctive_sentence IMPLICATION implication_sentence
+Rule 5     implication_sentence -> conjunctive_sentence
+Rule 6     conjunctive_sentence -> disjunctive_sentence CONJUNCTION conjunctive_sentence
+Rule 7     conjunctive_sentence -> disjunctive_sentence
+Rule 8     disjunctive_sentence -> negate_sentence DISJUNCTION disjunctive_sentence
+Rule 9     disjunctive_sentence -> negate_sentence
+Rule 10    negate_sentence -> NEGATION negate_sentence
+Rule 11    negate_sentence -> grouping_sentence
+Rule 12    grouping_sentence -> LPAREN sentence RPAREN
+Rule 13    grouping_sentence -> atomic_sentence
+Rule 14    atomic_sentence -> TRUE
+Rule 15    atomic_sentence -> FALSE
+Rule 16    atomic_sentence -> VARIABLE
+
+Terminals, with rules where they appear
+
+CONJUNCTION          : 6
+DISJUNCTION          : 8
+EQUIVALENCE          : 2
+FALSE                : 15
+IMPLICATION          : 4
+LPAREN               : 12
+NEGATION             : 10
+RPAREN               : 12
+TRUE                 : 14
+VARIABLE             : 16
+error                : 
+
+Nonterminals, with rules where they appear
+
+atomic_sentence      : 13
+conjunctive_sentence : 4 5 6
+disjunctive_sentence : 6 7 8
+equivalence_sentence : 1 2
+grouping_sentence    : 11
+implication_sentence : 2 3 4
+negate_sentence      : 8 9 10
+sentence             : 12 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . sentence
+    (1) sentence -> . equivalence_sentence
+    (2) equivalence_sentence -> . implication_sentence EQUIVALENCE equivalence_sentence
+    (3) equivalence_sentence -> . implication_sentence
+    (4) implication_sentence -> . conjunctive_sentence IMPLICATION implication_sentence
+    (5) implication_sentence -> . conjunctive_sentence
+    (6) conjunctive_sentence -> . disjunctive_sentence CONJUNCTION conjunctive_sentence
+    (7) conjunctive_sentence -> . disjunctive_sentence
+    (8) disjunctive_sentence -> . negate_sentence DISJUNCTION disjunctive_sentence
+    (9) disjunctive_sentence -> . negate_sentence
+    (10) negate_sentence -> . NEGATION negate_sentence
+    (11) negate_sentence -> . grouping_sentence
+    (12) grouping_sentence -> . LPAREN sentence RPAREN
+    (13) grouping_sentence -> . atomic_sentence
+    (14) atomic_sentence -> . TRUE
+    (15) atomic_sentence -> . FALSE
+    (16) atomic_sentence -> . VARIABLE
+
+    NEGATION        shift and go to state 7
+    LPAREN          shift and go to state 9
+    TRUE            shift and go to state 11
+    FALSE           shift and go to state 12
+    VARIABLE        shift and go to state 13
+
+    sentence                       shift and go to state 1
+    equivalence_sentence           shift and go to state 2
+    implication_sentence           shift and go to state 3
+    conjunctive_sentence           shift and go to state 4
+    disjunctive_sentence           shift and go to state 5
+    negate_sentence                shift and go to state 6
+    grouping_sentence              shift and go to state 8
+    atomic_sentence                shift and go to state 10
+
+state 1
+
+    (0) S' -> sentence .
+
+
+
+state 2
+
+    (1) sentence -> equivalence_sentence .
+
+    $end            reduce using rule 1 (sentence -> equivalence_sentence .)
+    RPAREN          reduce using rule 1 (sentence -> equivalence_sentence .)
+
+
+state 3
+
+    (2) equivalence_sentence -> implication_sentence . EQUIVALENCE equivalence_sentence
+    (3) equivalence_sentence -> implication_sentence .
+
+    EQUIVALENCE     shift and go to state 14
+    $end            reduce using rule 3 (equivalence_sentence -> implication_sentence .)
+    RPAREN          reduce using rule 3 (equivalence_sentence -> implication_sentence .)
+
+
+state 4
+
+    (4) implication_sentence -> conjunctive_sentence . IMPLICATION implication_sentence
+    (5) implication_sentence -> conjunctive_sentence .
+
+    IMPLICATION     shift and go to state 15
+    EQUIVALENCE     reduce using rule 5 (implication_sentence -> conjunctive_sentence .)
+    $end            reduce using rule 5 (implication_sentence -> conjunctive_sentence .)
+    RPAREN          reduce using rule 5 (implication_sentence -> conjunctive_sentence .)
+
+
+state 5
+
+    (6) conjunctive_sentence -> disjunctive_sentence . CONJUNCTION conjunctive_sentence
+    (7) conjunctive_sentence -> disjunctive_sentence .
+
+    CONJUNCTION     shift and go to state 16
+    IMPLICATION     reduce using rule 7 (conjunctive_sentence -> disjunctive_sentence .)
+    EQUIVALENCE     reduce using rule 7 (conjunctive_sentence -> disjunctive_sentence .)
+    $end            reduce using rule 7 (conjunctive_sentence -> disjunctive_sentence .)
+    RPAREN          reduce using rule 7 (conjunctive_sentence -> disjunctive_sentence .)
+
+
+state 6
+
+    (8) disjunctive_sentence -> negate_sentence . DISJUNCTION disjunctive_sentence
+    (9) disjunctive_sentence -> negate_sentence .
+
+    DISJUNCTION     shift and go to state 17
+    CONJUNCTION     reduce using rule 9 (disjunctive_sentence -> negate_sentence .)
+    IMPLICATION     reduce using rule 9 (disjunctive_sentence -> negate_sentence .)
+    EQUIVALENCE     reduce using rule 9 (disjunctive_sentence -> negate_sentence .)
+    $end            reduce using rule 9 (disjunctive_sentence -> negate_sentence .)
+    RPAREN          reduce using rule 9 (disjunctive_sentence -> negate_sentence .)
+
+
+state 7
+
+    (10) negate_sentence -> NEGATION . negate_sentence
+    (10) negate_sentence -> . NEGATION negate_sentence
+    (11) negate_sentence -> . grouping_sentence
+    (12) grouping_sentence -> . LPAREN sentence RPAREN
+    (13) grouping_sentence -> . atomic_sentence
+    (14) atomic_sentence -> . TRUE
+    (15) atomic_sentence -> . FALSE
+    (16) atomic_sentence -> . VARIABLE
+
+    NEGATION        shift and go to state 7
+    LPAREN          shift and go to state 9
+    TRUE            shift and go to state 11
+    FALSE           shift and go to state 12
+    VARIABLE        shift and go to state 13
+
+    negate_sentence                shift and go to state 18
+    grouping_sentence              shift and go to state 8
+    atomic_sentence                shift and go to state 10
+
+state 8
+
+    (11) negate_sentence -> grouping_sentence .
+
+    DISJUNCTION     reduce using rule 11 (negate_sentence -> grouping_sentence .)
+    CONJUNCTION     reduce using rule 11 (negate_sentence -> grouping_sentence .)
+    IMPLICATION     reduce using rule 11 (negate_sentence -> grouping_sentence .)
+    EQUIVALENCE     reduce using rule 11 (negate_sentence -> grouping_sentence .)
+    $end            reduce using rule 11 (negate_sentence -> grouping_sentence .)
+    RPAREN          reduce using rule 11 (negate_sentence -> grouping_sentence .)
+
+
+state 9
+
+    (12) grouping_sentence -> LPAREN . sentence RPAREN
+    (1) sentence -> . equivalence_sentence
+    (2) equivalence_sentence -> . implication_sentence EQUIVALENCE equivalence_sentence
+    (3) equivalence_sentence -> . implication_sentence
+    (4) implication_sentence -> . conjunctive_sentence IMPLICATION implication_sentence
+    (5) implication_sentence -> . conjunctive_sentence
+    (6) conjunctive_sentence -> . disjunctive_sentence CONJUNCTION conjunctive_sentence
+    (7) conjunctive_sentence -> . disjunctive_sentence
+    (8) disjunctive_sentence -> . negate_sentence DISJUNCTION disjunctive_sentence
+    (9) disjunctive_sentence -> . negate_sentence
+    (10) negate_sentence -> . NEGATION negate_sentence
+    (11) negate_sentence -> . grouping_sentence
+    (12) grouping_sentence -> . LPAREN sentence RPAREN
+    (13) grouping_sentence -> . atomic_sentence
+    (14) atomic_sentence -> . TRUE
+    (15) atomic_sentence -> . FALSE
+    (16) atomic_sentence -> . VARIABLE
+
+    NEGATION        shift and go to state 7
+    LPAREN          shift and go to state 9
+    TRUE            shift and go to state 11
+    FALSE           shift and go to state 12
+    VARIABLE        shift and go to state 13
+
+    sentence                       shift and go to state 19
+    equivalence_sentence           shift and go to state 2
+    implication_sentence           shift and go to state 3
+    conjunctive_sentence           shift and go to state 4
+    disjunctive_sentence           shift and go to state 5
+    negate_sentence                shift and go to state 6
+    grouping_sentence              shift and go to state 8
+    atomic_sentence                shift and go to state 10
+
+state 10
+
+    (13) grouping_sentence -> atomic_sentence .
+
+    DISJUNCTION     reduce using rule 13 (grouping_sentence -> atomic_sentence .)
+    CONJUNCTION     reduce using rule 13 (grouping_sentence -> atomic_sentence .)
+    IMPLICATION     reduce using rule 13 (grouping_sentence -> atomic_sentence .)
+    EQUIVALENCE     reduce using rule 13 (grouping_sentence -> atomic_sentence .)
+    $end            reduce using rule 13 (grouping_sentence -> atomic_sentence .)
+    RPAREN          reduce using rule 13 (grouping_sentence -> atomic_sentence .)
+
+
+state 11
+
+    (14) atomic_sentence -> TRUE .
+
+    DISJUNCTION     reduce using rule 14 (atomic_sentence -> TRUE .)
+    CONJUNCTION     reduce using rule 14 (atomic_sentence -> TRUE .)
+    IMPLICATION     reduce using rule 14 (atomic_sentence -> TRUE .)
+    EQUIVALENCE     reduce using rule 14 (atomic_sentence -> TRUE .)
+    $end            reduce using rule 14 (atomic_sentence -> TRUE .)
+    RPAREN          reduce using rule 14 (atomic_sentence -> TRUE .)
+
+
+state 12
+
+    (15) atomic_sentence -> FALSE .
+
+    DISJUNCTION     reduce using rule 15 (atomic_sentence -> FALSE .)
+    CONJUNCTION     reduce using rule 15 (atomic_sentence -> FALSE .)
+    IMPLICATION     reduce using rule 15 (atomic_sentence -> FALSE .)
+    EQUIVALENCE     reduce using rule 15 (atomic_sentence -> FALSE .)
+    $end            reduce using rule 15 (atomic_sentence -> FALSE .)
+    RPAREN          reduce using rule 15 (atomic_sentence -> FALSE .)
+
+
+state 13
+
+    (16) atomic_sentence -> VARIABLE .
+
+    DISJUNCTION     reduce using rule 16 (atomic_sentence -> VARIABLE .)
+    CONJUNCTION     reduce using rule 16 (atomic_sentence -> VARIABLE .)
+    IMPLICATION     reduce using rule 16 (atomic_sentence -> VARIABLE .)
+    EQUIVALENCE     reduce using rule 16 (atomic_sentence -> VARIABLE .)
+    $end            reduce using rule 16 (atomic_sentence -> VARIABLE .)
+    RPAREN          reduce using rule 16 (atomic_sentence -> VARIABLE .)
+
+
+state 14
+
+    (2) equivalence_sentence -> implication_sentence EQUIVALENCE . equivalence_sentence
+    (2) equivalence_sentence -> . implication_sentence EQUIVALENCE equivalence_sentence
+    (3) equivalence_sentence -> . implication_sentence
+    (4) implication_sentence -> . conjunctive_sentence IMPLICATION implication_sentence
+    (5) implication_sentence -> . conjunctive_sentence
+    (6) conjunctive_sentence -> . disjunctive_sentence CONJUNCTION conjunctive_sentence
+    (7) conjunctive_sentence -> . disjunctive_sentence
+    (8) disjunctive_sentence -> . negate_sentence DISJUNCTION disjunctive_sentence
+    (9) disjunctive_sentence -> . negate_sentence
+    (10) negate_sentence -> . NEGATION negate_sentence
+    (11) negate_sentence -> . grouping_sentence
+    (12) grouping_sentence -> . LPAREN sentence RPAREN
+    (13) grouping_sentence -> . atomic_sentence
+    (14) atomic_sentence -> . TRUE
+    (15) atomic_sentence -> . FALSE
+    (16) atomic_sentence -> . VARIABLE
+
+    NEGATION        shift and go to state 7
+    LPAREN          shift and go to state 9
+    TRUE            shift and go to state 11
+    FALSE           shift and go to state 12
+    VARIABLE        shift and go to state 13
+
+    implication_sentence           shift and go to state 3
+    equivalence_sentence           shift and go to state 20
+    conjunctive_sentence           shift and go to state 4
+    disjunctive_sentence           shift and go to state 5
+    negate_sentence                shift and go to state 6
+    grouping_sentence              shift and go to state 8
+    atomic_sentence                shift and go to state 10
+
+state 15
+
+    (4) implication_sentence -> conjunctive_sentence IMPLICATION . implication_sentence
+    (4) implication_sentence -> . conjunctive_sentence IMPLICATION implication_sentence
+    (5) implication_sentence -> . conjunctive_sentence
+    (6) conjunctive_sentence -> . disjunctive_sentence CONJUNCTION conjunctive_sentence
+    (7) conjunctive_sentence -> . disjunctive_sentence
+    (8) disjunctive_sentence -> . negate_sentence DISJUNCTION disjunctive_sentence
+    (9) disjunctive_sentence -> . negate_sentence
+    (10) negate_sentence -> . NEGATION negate_sentence
+    (11) negate_sentence -> . grouping_sentence
+    (12) grouping_sentence -> . LPAREN sentence RPAREN
+    (13) grouping_sentence -> . atomic_sentence
+    (14) atomic_sentence -> . TRUE
+    (15) atomic_sentence -> . FALSE
+    (16) atomic_sentence -> . VARIABLE
+
+    NEGATION        shift and go to state 7
+    LPAREN          shift and go to state 9
+    TRUE            shift and go to state 11
+    FALSE           shift and go to state 12
+    VARIABLE        shift and go to state 13
+
+    conjunctive_sentence           shift and go to state 4
+    implication_sentence           shift and go to state 21
+    disjunctive_sentence           shift and go to state 5
+    negate_sentence                shift and go to state 6
+    grouping_sentence              shift and go to state 8
+    atomic_sentence                shift and go to state 10
+
+state 16
+
+    (6) conjunctive_sentence -> disjunctive_sentence CONJUNCTION . conjunctive_sentence
+    (6) conjunctive_sentence -> . disjunctive_sentence CONJUNCTION conjunctive_sentence
+    (7) conjunctive_sentence -> . disjunctive_sentence
+    (8) disjunctive_sentence -> . negate_sentence DISJUNCTION disjunctive_sentence
+    (9) disjunctive_sentence -> . negate_sentence
+    (10) negate_sentence -> . NEGATION negate_sentence
+    (11) negate_sentence -> . grouping_sentence
+    (12) grouping_sentence -> . LPAREN sentence RPAREN
+    (13) grouping_sentence -> . atomic_sentence
+    (14) atomic_sentence -> . TRUE
+    (15) atomic_sentence -> . FALSE
+    (16) atomic_sentence -> . VARIABLE
+
+    NEGATION        shift and go to state 7
+    LPAREN          shift and go to state 9
+    TRUE            shift and go to state 11
+    FALSE           shift and go to state 12
+    VARIABLE        shift and go to state 13
+
+    disjunctive_sentence           shift and go to state 5
+    conjunctive_sentence           shift and go to state 22
+    negate_sentence                shift and go to state 6
+    grouping_sentence              shift and go to state 8
+    atomic_sentence                shift and go to state 10
+
+state 17
+
+    (8) disjunctive_sentence -> negate_sentence DISJUNCTION . disjunctive_sentence
+    (8) disjunctive_sentence -> . negate_sentence DISJUNCTION disjunctive_sentence
+    (9) disjunctive_sentence -> . negate_sentence
+    (10) negate_sentence -> . NEGATION negate_sentence
+    (11) negate_sentence -> . grouping_sentence
+    (12) grouping_sentence -> . LPAREN sentence RPAREN
+    (13) grouping_sentence -> . atomic_sentence
+    (14) atomic_sentence -> . TRUE
+    (15) atomic_sentence -> . FALSE
+    (16) atomic_sentence -> . VARIABLE
+
+    NEGATION        shift and go to state 7
+    LPAREN          shift and go to state 9
+    TRUE            shift and go to state 11
+    FALSE           shift and go to state 12
+    VARIABLE        shift and go to state 13
+
+    negate_sentence                shift and go to state 6
+    disjunctive_sentence           shift and go to state 23
+    grouping_sentence              shift and go to state 8
+    atomic_sentence                shift and go to state 10
+
+state 18
+
+    (10) negate_sentence -> NEGATION negate_sentence .
+
+    DISJUNCTION     reduce using rule 10 (negate_sentence -> NEGATION negate_sentence .)
+    CONJUNCTION     reduce using rule 10 (negate_sentence -> NEGATION negate_sentence .)
+    IMPLICATION     reduce using rule 10 (negate_sentence -> NEGATION negate_sentence .)
+    EQUIVALENCE     reduce using rule 10 (negate_sentence -> NEGATION negate_sentence .)
+    $end            reduce using rule 10 (negate_sentence -> NEGATION negate_sentence .)
+    RPAREN          reduce using rule 10 (negate_sentence -> NEGATION negate_sentence .)
+
+
+state 19
+
+    (12) grouping_sentence -> LPAREN sentence . RPAREN
+
+    RPAREN          shift and go to state 24
+
+
+state 20
+
+    (2) equivalence_sentence -> implication_sentence EQUIVALENCE equivalence_sentence .
+
+    $end            reduce using rule 2 (equivalence_sentence -> implication_sentence EQUIVALENCE equivalence_sentence .)
+    RPAREN          reduce using rule 2 (equivalence_sentence -> implication_sentence EQUIVALENCE equivalence_sentence .)
+
+
+state 21
+
+    (4) implication_sentence -> conjunctive_sentence IMPLICATION implication_sentence .
+
+    EQUIVALENCE     reduce using rule 4 (implication_sentence -> conjunctive_sentence IMPLICATION implication_sentence .)
+    $end            reduce using rule 4 (implication_sentence -> conjunctive_sentence IMPLICATION implication_sentence .)
+    RPAREN          reduce using rule 4 (implication_sentence -> conjunctive_sentence IMPLICATION implication_sentence .)
+
+
+state 22
+
+    (6) conjunctive_sentence -> disjunctive_sentence CONJUNCTION conjunctive_sentence .
+
+    IMPLICATION     reduce using rule 6 (conjunctive_sentence -> disjunctive_sentence CONJUNCTION conjunctive_sentence .)
+    EQUIVALENCE     reduce using rule 6 (conjunctive_sentence -> disjunctive_sentence CONJUNCTION conjunctive_sentence .)
+    $end            reduce using rule 6 (conjunctive_sentence -> disjunctive_sentence CONJUNCTION conjunctive_sentence .)
+    RPAREN          reduce using rule 6 (conjunctive_sentence -> disjunctive_sentence CONJUNCTION conjunctive_sentence .)
+
+
+state 23
+
+    (8) disjunctive_sentence -> negate_sentence DISJUNCTION disjunctive_sentence .
+
+    CONJUNCTION     reduce using rule 8 (disjunctive_sentence -> negate_sentence DISJUNCTION disjunctive_sentence .)
+    IMPLICATION     reduce using rule 8 (disjunctive_sentence -> negate_sentence DISJUNCTION disjunctive_sentence .)
+    EQUIVALENCE     reduce using rule 8 (disjunctive_sentence -> negate_sentence DISJUNCTION disjunctive_sentence .)
+    $end            reduce using rule 8 (disjunctive_sentence -> negate_sentence DISJUNCTION disjunctive_sentence .)
+    RPAREN          reduce using rule 8 (disjunctive_sentence -> negate_sentence DISJUNCTION disjunctive_sentence .)
+
+
+state 24
+
+    (12) grouping_sentence -> LPAREN sentence RPAREN .
+
+    DISJUNCTION     reduce using rule 12 (grouping_sentence -> LPAREN sentence RPAREN .)
+    CONJUNCTION     reduce using rule 12 (grouping_sentence -> LPAREN sentence RPAREN .)
+    IMPLICATION     reduce using rule 12 (grouping_sentence -> LPAREN sentence RPAREN .)
+    EQUIVALENCE     reduce using rule 12 (grouping_sentence -> LPAREN sentence RPAREN .)
+    $end            reduce using rule 12 (grouping_sentence -> LPAREN sentence RPAREN .)
+    RPAREN          reduce using rule 12 (grouping_sentence -> LPAREN sentence RPAREN .)
+
