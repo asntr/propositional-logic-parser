@@ -79,7 +79,6 @@ def remove_negations(root):
         apply_de_morgan(res)
         root = remove_negations(res)
     else:
-        # double negation law
         root = child.args[0]
         root = remove_negations(root)
     return root

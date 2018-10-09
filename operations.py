@@ -1,11 +1,3 @@
-assigns = {}
-
-
-def assign_values(names, values):
-    global assigns
-    assigns = dict(zip(names, values))
-
-
 class Operation:
 
     def __init__(self, op, *args):
@@ -65,12 +57,13 @@ class Constant:
 
 
 class Variable:
+    assigns = {}
 
     def __init__(self, name):
         self.name = name
 
     def compute(self):
-        return bool(assigns[self.name])
+        return bool(self.assigns[self.name])
 
     def __repr__(self):
         return self.name
@@ -86,6 +79,10 @@ class Variable:
 
     def copy(self):
         return Variable(self.name)
+
+
+def assign_values(names, values):
+    Variable.assigns = dict(zip(names, values))
 
 
 def conjunction(a, b):
